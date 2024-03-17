@@ -10,7 +10,8 @@ import (
 )
 
 func Start() {
-	customer_repo := domain.NewCustomerRepositoryStub()
+	// customer_repo := domain.NewCustomerRepositoryStub()
+	customer_repo := domain.NewCustomerRepositoryMysql()
 	customer_service := service.NewCustomerService(&customer_repo)
 
 	ch := CustomerHandlers{
