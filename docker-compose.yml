@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  api:
+    image: golang:1.22.1-alpine3.19
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    command: >
+      /bin/sh -c "while sleep 1000; do :; done"
