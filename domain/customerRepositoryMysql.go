@@ -32,10 +32,11 @@ func (r *CustomerRepositoryMysql) FindAll() ([]*Customer, error) {
 		log.Fatal("db error")
 	}
 	customers := make([]*Customer, 0)
-
+	var dob string
 	for rows.Next() {
 		var c Customer
-		rows.Scan(&c.ID, &c.Name, &c.City, &c.Zipcode, &c.DateOfBirth, &c.Status)
+		rows.Scan(&c.ID, &c.Name, &c.City, &c.Zipcode, &dob, &c.Status)
+		c.DateOfBirth, _ = time.Parse("2006-01-02", dob)
 		customers = append(customers, &c)
 	}
 	return customers, nil
